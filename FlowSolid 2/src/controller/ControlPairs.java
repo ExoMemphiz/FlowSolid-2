@@ -5,6 +5,7 @@
  */
 package controller;
 
+import controller.interfaces.WordPairControlInterface;
 import model.FileHandler;
 import model.WordPair;
 import java.io.IOException;

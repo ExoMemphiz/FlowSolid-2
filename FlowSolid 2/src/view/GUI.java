@@ -6,7 +6,7 @@
 package view;
 
 import controller.ControlPairs;
-import controller.WordPairControlInterface;
+import controller.interfaces.WordPairControlInterface;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 

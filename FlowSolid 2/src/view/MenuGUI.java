@@ -130,17 +130,17 @@ public class MenuGUI extends javax.swing.JFrame {
         //Player creation
         ArrayList<Player> players = new ArrayList<>();
         int amountPlayers = Integer.parseInt(jFormattedTextFieldPlayerCount.getText());
-        
-        
+                
         if(amountPlayers >= 1){
             for (int i = 1; i < amountPlayers - 1; i++){ // No such thing as player 0 
-                Player tempPlayer = new Player(i);
+                String name = JOptionPane.showInputDialog("Name of player " + i + "?");
+                Player tempPlayer = new Player(name);               
                 players.add(tempPlayer);
                 //Funktion med pass af arraylist af players + difficulty + spil valg
             }
         }        
         else{
-            JOptionPane.showMessageDialog(null, "Amount of players has exceed 0!");
+            JOptionPane.showMessageDialog(null, "Amount of players has to exceed 0!");
         }
     }//GEN-LAST:event_jButtonSelectGameActionPerformed
 
