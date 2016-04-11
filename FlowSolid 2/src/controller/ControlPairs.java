@@ -15,6 +15,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Constants;
 
 /**
  *
@@ -22,8 +23,6 @@ import javax.swing.JOptionPane;
  */
 public class ControlPairs implements WordPairControlInterface {
 
-    public static String FILE_PATH = "pairs.txt";
-    
     private ArrayList<WordPair> pairs = new ArrayList<>();
     private ArrayList<WordPair> newlyAdded = new ArrayList<>();
     private Random r;
@@ -31,13 +30,13 @@ public class ControlPairs implements WordPairControlInterface {
     
     public ControlPairs(boolean loadFromFile) {
         if (loadFromFile){
-            load(FILE_PATH);
+            load(Constants.PATH_GAME_LINES);
         }
         r = new Random();
     }
     public ControlPairs() {
         r = new Random();
-        load(FILE_PATH);
+        load(Constants.PATH_GAME_LINES);
     }
     
     @Override
@@ -115,7 +114,7 @@ public class ControlPairs implements WordPairControlInterface {
     public boolean load(String filename) {
         ArrayList<String> readFile = null;
         try {
-            readFile = FileHandler.readFile(FILE_PATH);
+            readFile = FileHandler.readFile(Constants.PATH_GAME_LINES);
             for (String s : readFile) {
                 if (s != null && !s.isEmpty() && s.contains(",")) {
                     pairs.add(new WordPair(s));

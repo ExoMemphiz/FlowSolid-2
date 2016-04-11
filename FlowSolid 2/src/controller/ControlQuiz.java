@@ -2,8 +2,15 @@ package controller;
 
 import controller.ControlPairs;
 import controller.interfaces.QuizControlInterface;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Constants;
 
 public class ControlQuiz extends ControlPairs implements QuizControlInterface{
+    
+    ArrayList<String> gameNames = null;
     
     /**
     * This method returns a list of selectable games.
@@ -12,8 +19,14 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
     * Returns a list of names of selectable games 
     */
     public String[] getGameNames() {
-        String strAr[] = {""}; // TEMP
-        return strAr;
+        if (gameNames == null) {
+            try {
+                gameNames = model.FileHandler.readFile(Constants.PATH_GAME_NAMES);
+            } catch (IOException ex) {
+                Logger.getLogger(ControlQuiz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return gameNames.stream().toArray(String[]::new);
     }
 
 
