@@ -6,8 +6,7 @@ public class Player
     private String name;
     private int points;
     
-    public Player(String name)
-    {
+    public Player(String name) {
         this.name = name;
     }
     
@@ -19,8 +18,7 @@ public class Player
         points--;
     }
     
-    public void addPoints(int p)
-    {
+    public void addPoints(int p) {
         points += p;
     }
     
