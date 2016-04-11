@@ -17,7 +17,7 @@ import java.awt.Toolkit;
 public class GUI extends javax.swing.JFrame {
 
     WordPairControlInterface control;
-    
+
     /**
      * Creates new form GUI
      */

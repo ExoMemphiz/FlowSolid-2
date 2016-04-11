@@ -11,6 +11,14 @@ public class Player
         this.name = name;
     }
     
+    public void addPoint() {
+        points++;
+    }
+    
+    public void subtractPoint() {
+        points--;
+    }
+    
     public void addPoints(int p)
     {
         points += p;
