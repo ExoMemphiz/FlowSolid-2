@@ -42,8 +42,8 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jTabbedPaneLanguage = new javax.swing.JTabbedPane();
+        jPanelLanguageLearning = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldDanish = new javax.swing.JTextField();
@@ -53,13 +53,13 @@ public class GUI extends javax.swing.JFrame {
         jButtonCheckAnswer = new javax.swing.JButton();
         jTextFieldResult = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        jPanelDictionary = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jTextFieldDictionaryInput = new javax.swing.JTextField();
         jTextFieldDictionaryOutput = new javax.swing.JTextField();
         jButtonDictionaryLookUp = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelLangAdmin = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldAddDanish = new javax.swing.JTextField();
@@ -70,28 +70,28 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelLanguageLearning.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Language Learner");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 304, 38));
+        jPanelLanguageLearning.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 304, 38));
 
         jLabel5.setText("Danish");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 50, -1));
+        jPanelLanguageLearning.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 50, -1));
 
         jTextFieldDanish.setEditable(false);
-        jPanel1.add(jTextFieldDanish, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 68, 128, -1));
+        jPanelLanguageLearning.add(jTextFieldDanish, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 68, 128, -1));
 
         jLabel6.setText("English");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 106, 50, -1));
+        jPanelLanguageLearning.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 106, 50, -1));
 
         jTextFieldEnglish.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldEnglishActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextFieldEnglish, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 102, 128, -1));
+        jPanelLanguageLearning.add(jTextFieldEnglish, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 102, 128, -1));
 
         jButtonNew.setText("New");
         jButtonNew.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +99,7 @@ public class GUI extends javax.swing.JFrame {
                 jButtonNewActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 67, 79, -1));
+        jPanelLanguageLearning.add(jButtonNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 67, 79, -1));
 
         jButtonCheckAnswer.setText("Check");
         jButtonCheckAnswer.addActionListener(new java.awt.event.ActionListener() {
@@ -107,26 +107,26 @@ public class GUI extends javax.swing.JFrame {
                 jButtonCheckAnswerActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonCheckAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 101, 79, -1));
+        jPanelLanguageLearning.add(jButtonCheckAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 101, 79, -1));
 
         jTextFieldResult.setEditable(false);
-        jPanel1.add(jTextFieldResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 142, 128, -1));
+        jPanelLanguageLearning.add(jTextFieldResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 142, 128, -1));
 
         jLabel7.setText("Result");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 144, 50, -1));
+        jPanelLanguageLearning.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 144, 50, -1));
 
-        jTabbedPane1.addTab("Language learning", jPanel1);
+        jTabbedPaneLanguage.addTab("Language learning", jPanelLanguageLearning);
 
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelDictionary.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Word dictionary");
-        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 191, 30));
-        jPanel4.add(jTextFieldDictionaryInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 78, 130, -1));
+        jPanelDictionary.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 191, 30));
+        jPanelDictionary.add(jTextFieldDictionaryInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 78, 130, -1));
 
         jTextFieldDictionaryOutput.setEditable(false);
-        jPanel4.add(jTextFieldDictionaryOutput, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 109, 130, -1));
+        jPanelDictionary.add(jTextFieldDictionaryOutput, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 109, 130, -1));
 
         jButtonDictionaryLookUp.setText("Look Up");
         jButtonDictionaryLookUp.addActionListener(new java.awt.event.ActionListener() {
@@ -134,13 +134,13 @@ public class GUI extends javax.swing.JFrame {
                 jButtonDictionaryLookUpActionPerformed(evt);
             }
         });
-        jPanel4.add(jButtonDictionaryLookUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 140, -1, -1));
+        jPanelDictionary.add(jButtonDictionaryLookUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 140, -1, -1));
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Auto Detect Language");
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 52, 130, -1));
+        jPanelDictionary.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 52, 130, -1));
 
-        jTabbedPane1.addTab("Dictionary", jPanel4);
+        jTabbedPaneLanguage.addTab("Dictionary", jPanelDictionary);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -157,38 +157,38 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelLangAdminLayout = new javax.swing.GroupLayout(jPanelLangAdmin);
+        jPanelLangAdmin.setLayout(jPanelLangAdminLayout);
+        jPanelLangAdminLayout.setHorizontalGroup(
+            jPanelLangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLangAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanelLangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelLangAdminLayout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelLangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonAddPair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldAddEnglish)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanelLangAdminLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelLangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldAddDanish))))
                 .addContainerGap(211, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jPanelLangAdminLayout.setVerticalGroup(
+            jPanelLangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLangAdminLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldAddDanish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldAddEnglish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -196,9 +196,9 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(135, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Admin", jPanel2);
+        jTabbedPaneLanguage.addTab("Admin", jPanelLangAdmin);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        getContentPane().add(jTabbedPaneLanguage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -259,10 +259,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel jPanelDictionary;
+    private javax.swing.JPanel jPanelLangAdmin;
+    private javax.swing.JPanel jPanelLanguageLearning;
+    private javax.swing.JTabbedPane jTabbedPaneLanguage;
     private javax.swing.JTextField jTextFieldAddDanish;
     private javax.swing.JTextField jTextFieldAddEnglish;
     private javax.swing.JTextField jTextFieldDanish;

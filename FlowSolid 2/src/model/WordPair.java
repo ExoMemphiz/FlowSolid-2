@@ -13,20 +13,20 @@ import java.text.DecimalFormat;
  */
 public class WordPair {
  
-    private final String danish, english;
+    private final String question, answer;
     private double difficulty;
     
     //Example line: "Hest,Horse"
     public WordPair(String line) {
         String[] splits = line.split(",");
-        danish = splits[0];
-        english = splits[1];
+        question = splits[0];
+        answer = splits[1];
         difficulty = (splits.length > 2 ? Double.parseDouble(splits[2]) : calculateDifficulty());
     }
     
     public WordPair(String danish, String english) {
-        this.danish = danish;
-        this.english = english;
+        this.question = danish;
+        this.answer = english;
     }
 
     /**
@@ -40,17 +40,17 @@ public class WordPair {
     
     private double calculateDifficulty() {
         DecimalFormat format = new DecimalFormat("#.##");
-        double normalized = normalize(danish.length() + english.length());
+        double normalized = normalize(question.length() + answer.length());
         String formatted = format.format(normalized).replaceAll(",", ".");
         return Double.parseDouble(formatted);
     }
     
     public String getDanish() {
-        return danish;
+        return question;
     }
 
     public String getEnglish() {
-        return english;
+        return answer;
     }
 
     public double getDifficulty() {
@@ -59,23 +59,23 @@ public class WordPair {
     
     @Override
     public String toString() {
-        return danish + "," + english + "," + difficulty;
+        return question + "," + answer + "," + difficulty;
     }
  
     public boolean isEqual(String danish, String english) {
-        return this.danish.equalsIgnoreCase(danish) && this.english.equalsIgnoreCase(english);
+        return this.question.equalsIgnoreCase(danish) && this.answer.equalsIgnoreCase(english);
     }
     
     public boolean isPartOf(String word) {
-        return english.equalsIgnoreCase(word) || danish.equalsIgnoreCase(word);
+        return answer.equalsIgnoreCase(word) || question.equalsIgnoreCase(word);
     }
     
     public String getEquivalent(String word) {
         if (isPartOf(word)) {
-            if (word.equalsIgnoreCase(english)) {
-                return danish;
+            if (word.equalsIgnoreCase(answer)) {
+                return question;
             }
-            return english;
+            return answer;
         }
         return null;
     }

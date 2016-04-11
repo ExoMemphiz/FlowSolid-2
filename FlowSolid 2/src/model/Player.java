@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.JOptionPane;
+
 public class Player {
     
     private String name;
@@ -7,6 +9,10 @@ public class Player {
     
     public Player(String name) {
         this.name = name;
+    }
+    
+    public void setGuiName(int num){
+        this.name = JOptionPane.showInputDialog("Name of player " + num + "?");
     }
     
     public void addPoint() {

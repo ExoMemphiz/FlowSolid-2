@@ -28,7 +28,7 @@ public class MenuGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelMainMenu = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxGameType = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jFormattedTextFieldPlayerCount = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -41,7 +41,7 @@ public class MenuGUI extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Translation", "Music", "Programming", "Gaming" }));
+        jComboBoxGameType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Translation", "Music", "Programming", "Gaming" }));
 
         jLabel1.setText("Game Type:");
 
@@ -49,33 +49,49 @@ public class MenuGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Player Count:");
 
-        jLabel3.setText("Difficulty Slider:");
+        jSlider1.setMajorTickSpacing(1);
+        jSlider1.setMaximum(5);
+        jSlider1.setMinimum(1);
+        jSlider1.setMinorTickSpacing(1);
+        jSlider1.setPaintLabels(true);
+        jSlider1.setPaintTicks(true);
+        jSlider1.setSnapToTicks(true);
+        jSlider1.setValue(3);
+
+        jLabel3.setText("Difficulty Slider (5 hardest):");
 
         jButtonSelectGame.setText("Select Game");
+        jButtonSelectGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSelectGameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelMainMenuLayout = new javax.swing.GroupLayout(jPanelMainMenu);
         jPanelMainMenu.setLayout(jPanelMainMenuLayout);
         jPanelMainMenuLayout.setHorizontalGroup(
             jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMainMenuLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelMainMenuLayout.createSequentialGroup()
-                        .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jFormattedTextFieldPlayerCount, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(16, 16, 16)))
-                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainMenuLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonSelectGame, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabel3)
+                .addGap(88, 88, 88))
+            .addGroup(jPanelMainMenuLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelMainMenuLayout.createSequentialGroup()
+                        .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxGameType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jFormattedTextFieldPlayerCount, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelMainMenuLayout.createSequentialGroup()
+                        .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                            .addComponent(jButtonSelectGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))))
         );
         jPanelMainMenuLayout.setVerticalGroup(
             jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,21 +102,26 @@ public class MenuGUI extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(12, 12, 12)
                 .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxGameType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFieldPlayerCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSelectGame)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanelMainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 190));
+        getContentPane().add(jPanelMainMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 210));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSelectGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectGameActionPerformed
+        String comboChoice = "" + jComboBoxGameType.getSelectedItem();
+        System.out.println(comboChoice);
+    }//GEN-LAST:event_jButtonSelectGameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,7 +161,7 @@ public class MenuGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSelectGame;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxGameType;
     private javax.swing.JFormattedTextField jFormattedTextFieldPlayerCount;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
