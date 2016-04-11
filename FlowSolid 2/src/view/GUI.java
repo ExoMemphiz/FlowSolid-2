@@ -117,11 +117,16 @@ public class GUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Language learning", jPanel1);
 
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Word dictionary");
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 191, 30));
+        jPanel4.add(jTextFieldDictionaryInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 78, 130, -1));
 
         jTextFieldDictionaryOutput.setEditable(false);
+        jPanel4.add(jTextFieldDictionaryOutput, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 109, 130, -1));
 
         jButtonDictionaryLookUp.setText("Look Up");
         jButtonDictionaryLookUp.addActionListener(new java.awt.event.ActionListener() {
@@ -129,45 +134,11 @@ public class GUI extends javax.swing.JFrame {
                 jButtonDictionaryLookUpActionPerformed(evt);
             }
         });
+        jPanel4.add(jButtonDictionaryLookUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 140, -1, -1));
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Auto Detect Language");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jButtonDictionaryLookUp))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldDictionaryInput)
-                            .addComponent(jTextFieldDictionaryOutput)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))))
-                .addContainerGap(194, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addGap(12, 12, 12)
-                .addComponent(jTextFieldDictionaryInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldDictionaryOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonDictionaryLookUp)
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 52, 130, -1));
 
         jTabbedPane1.addTab("Dictionary", jPanel4);
 
