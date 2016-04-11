@@ -11,7 +11,7 @@ public class Player {
         this.name = name;
     }
     
-    public void setGuiName(int num){
+    public Player(int num){
         this.name = JOptionPane.showInputDialog("Name of player " + num + "?");
     }
     
