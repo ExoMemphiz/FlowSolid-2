@@ -8,6 +8,7 @@ package controller;
 import view.GUI;
 import controller.ControlPairs;
 import java.io.IOException;
+import view.MenuGUI;
 
 /**
  *
@@ -22,10 +23,7 @@ public class FlowSolid {
     public static void main(String[] args) throws IOException {
         ControlPairs control = new ControlPairs();
         ControlQuiz quiz = new ControlQuiz();
-        for (String s : quiz.getGameNames()) {
-            System.out.println(s);
-        }
-        GUI gui = new GUI(control);
+        MenuGUI gui = new MenuGUI(quiz);
     }
     
 }

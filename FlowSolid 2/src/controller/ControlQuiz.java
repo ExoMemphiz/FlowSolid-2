@@ -32,7 +32,7 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
 
     /**
     * This method is used to select a game and mark it as the selected one. 
-    * It should be called when the user has made a choise
+    * It should be called when the user has made a choice
     * about what game he wants.
     * Pre: The name passed corresponds to a selectable game
     * Post: The existing collection of word pairs is cleared.

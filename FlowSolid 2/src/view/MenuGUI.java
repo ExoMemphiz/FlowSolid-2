@@ -8,6 +8,8 @@ package view;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Player;
+import controller.ControlQuiz;
+import javax.swing.ComboBoxModel;
 
 /**
  *
@@ -15,13 +17,30 @@ import model.Player;
  */
 public class MenuGUI extends javax.swing.JFrame {
 
+    private ControlQuiz quiz;
+    
     /**
      * Creates new form MenuFrame
      */
-    public MenuGUI() {
+    public MenuGUI(ControlQuiz quiz) {
+        this.quiz = quiz;
         initComponents();
+        setModel();
+        setVisible(true);
+        setLocationRelativeTo(null);
     }
 
+    public void setModel() {
+        String[] strings = quiz.getGameNames();
+        ComboBoxModel<String> model = new javax.swing.DefaultComboBoxModel<>(strings);
+        jComboBoxGameType.setModel(model);
+    }
+    
+    public void CallGameGUI() {
+        new GameGUI(quiz);
+        dispose();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,56 +148,19 @@ public class MenuGUI extends javax.swing.JFrame {
         
         //Player creation
         ArrayList<Player> players = new ArrayList<>();
-        int amountPlayers = Integer.parseInt(jFormattedTextFieldPlayerCount.getText());
-                
-        if(amountPlayers >= 1){
-            for (int i = 1; i < amountPlayers - 1; i++){ // No such thing as player 0 
-                String name = JOptionPane.showInputDialog("Name of player " + i + "?");
-                Player tempPlayer = new Player(name);               
-                players.add(tempPlayer);
-                //Funktion med pass af arraylist af players + difficulty + spil valg
-            }
-        }        
-        else{
-            JOptionPane.showMessageDialog(null, "Amount of players has to exceed 0!");
+        int amountPlayers = 0;
+        try {
+            amountPlayers = Integer.parseInt(jFormattedTextFieldPlayerCount.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid number of players!");
+        }
+        for (int i = 0; i < amountPlayers; i++){ // No such thing as player 0 
+            String name = JOptionPane.showInputDialog("Name of player " + i + "?");
+            Player tempPlayer = new Player(name);               
+            players.add(tempPlayer);
+            //Funktion med pass af arraylist af players + difficulty + spil valg
         }
     }//GEN-LAST:event_jButtonSelectGameActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuGUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSelectGame;
