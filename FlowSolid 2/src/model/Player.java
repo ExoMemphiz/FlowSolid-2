@@ -1,8 +1,6 @@
-
 package model;
 
-public class Player 
-{
+public class Player {
     private String name;
     private int points;
     
@@ -21,6 +19,5 @@ public class Player
     public void addPoints(int p) {
         points += p;
     }
-    
     
 }
