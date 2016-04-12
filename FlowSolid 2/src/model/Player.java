@@ -9,12 +9,8 @@ public class Player {
     
     public Player(String name) {
         this.name = name;
-    }
-    
-    public Player(int num){
-        this.name = JOptionPane.showInputDialog("Name of player " + num + "?");
-    }
-    
+    }   
+   
     public void addPoint() {
         points++;
     }
