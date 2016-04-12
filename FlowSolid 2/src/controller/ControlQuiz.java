@@ -10,7 +10,8 @@ import model.Constants;
 
 public class ControlQuiz extends ControlPairs implements QuizControlInterface{
     
-    ArrayList<String> gameNames = null;
+    private ArrayList<String> gameNames = null;
+    private String selectedGame;
     
     /**
     * This method returns a list of selectable games.
@@ -48,9 +49,7 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
     * Post: Returns the name of the game presently selected. If no game is selected it returns null.
     */
     public String getSelectedGameName() {
-        String name = "";
-        
-        return name;
+        return selectedGame;
     }
 
 
@@ -60,7 +59,7 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
        * Post: A new game is added to the existing collection of games
        */
     public void addGame(String gameName) {
-        
+        gameNames.add(gameName);
     }
 
 }
