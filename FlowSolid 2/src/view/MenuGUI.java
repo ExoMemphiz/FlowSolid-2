@@ -18,6 +18,7 @@ import javax.swing.ComboBoxModel;
 public class MenuGUI extends javax.swing.JFrame {
 
     private ControlQuiz quiz;
+    private ArrayList<Player> players;
     
     /**
      * Creates new form MenuFrame
@@ -28,6 +29,7 @@ public class MenuGUI extends javax.swing.JFrame {
         setModel();
         setVisible(true);
         setLocationRelativeTo(null);
+        players = new ArrayList<>();
     }
 
     public void setModel() {
@@ -37,7 +39,7 @@ public class MenuGUI extends javax.swing.JFrame {
     }
     
     public void CallGameGUI() {
-        new GameGUI(quiz);
+        new GameGUI(quiz, players);
         dispose();
     }
     
@@ -145,20 +147,23 @@ public class MenuGUI extends javax.swing.JFrame {
         //Combo box stuff
         int difficulty = jSliderDifficulty.getValue();
         String comboChoice = "" + jComboBoxGameType.getSelectedItem();
-        
+        quiz.selectGame(comboChoice);
         //Player creation
-        ArrayList<Player> players = new ArrayList<>();
-        int amountPlayers = 0;
         try {
-            amountPlayers = Integer.parseInt(jFormattedTextFieldPlayerCount.getText());
+            int amountPlayers = Integer.parseInt(jFormattedTextFieldPlayerCount.getText());
+            for (int i = 0; i < amountPlayers; i++){ // No such thing as player 0 
+                String name = JOptionPane.showInputDialog("Name of player " + (i + 1) + "?");
+                if (name != null && !name.isEmpty() && !name.equals("")) {
+                    Player tempPlayer = new Player(name);               
+                    players.add(tempPlayer);
+                    //Funktion med pass af arraylist af players + difficulty + spil valg
+                } else {
+                    i--;
+                }
+            }
+            CallGameGUI();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Please enter a valid number of players!");
-        }
-        for (int i = 0; i < amountPlayers; i++){ // No such thing as player 0 
-            String name = JOptionPane.showInputDialog("Name of player " + i + "?");
-            Player tempPlayer = new Player(name);               
-            players.add(tempPlayer);
-            //Funktion med pass af arraylist af players + difficulty + spil valg
         }
     }//GEN-LAST:event_jButtonSelectGameActionPerformed
 

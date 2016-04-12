@@ -6,6 +6,8 @@
 package view;
 
 import controller.ControlQuiz;
+import java.util.ArrayList;
+import model.Player;
 
 /**
  *
@@ -18,14 +20,15 @@ public class GameGUI extends javax.swing.JFrame {
     /**
      * Creates new form GameGUI
      */
-    public GameGUI(ControlQuiz quiz) {
+    public GameGUI(ControlQuiz quiz, ArrayList<Player> players) {
         this.quiz = quiz;
         initComponents();
+        setVisible(true);
         setLocationRelativeTo(null);
     }
     
     public void CallMenuGUI() {
-        new GameGUI(quiz);
+        new MenuGUI(quiz);
         dispose();
     }
     
