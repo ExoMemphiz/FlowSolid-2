@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Constants;
+import model.Game;
 
 public class ControlQuiz extends ControlPairs implements QuizControlInterface{
     
-    private ArrayList<String> gameNames = null;
-    private String selectedGame;
+    private ArrayList<Game> games = null;
+    private Game selectedGame;
     
     /**
     * This method returns a list of selectable games.
@@ -20,14 +21,24 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
     * Returns a list of names of selectable games 
     */
     public String[] getGameNames() {
-        if (gameNames == null) {
+        if (games == null) {
             try {
-                gameNames = model.FileHandler.readFile(Constants.PATH_GAME_NAMES);
+                games = new ArrayList<Game>();
+                ArrayList<String> fileIN = model.FileHandler.readFile(Constants.PATH_GAME_NAMES);
+                for (String s : fileIN) {
+                    games.add(new Game(s));
+                }
             } catch (IOException ex) {
                 Logger.getLogger(ControlQuiz.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return gameNames.stream().toArray(String[]::new);
+        int arraySize = games.size();
+        String[] gameNames = new String[arraySize];
+        for (int i = 0; i < games.size(); i++) {
+            Game g = games.get(i);
+            gameNames[i] = g.getGameName();
+        }
+        return gameNames;
     }
 
 
@@ -39,7 +50,12 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
     * Post: The existing collection of word pairs is cleared.
     */
     public void selectGame(String gameName) {
-        
+        for (Game game : games) {
+            if (game.getGameName().equals(gameName)) {
+                //Change game to this
+                return;
+            }
+        }
     }
 
 
@@ -49,7 +65,7 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
     * Post: Returns the name of the game presently selected. If no game is selected it returns null.
     */
     public String getSelectedGameName() {
-        return selectedGame;
+        return selectedGame.getGameName();
     }
 
 
@@ -59,7 +75,7 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
        * Post: A new game is added to the existing collection of games
        */
     public void addGame(String gameName) {
-        gameNames.add(gameName);
+        //Add game with more info through parameter?
     }
 
 }
