@@ -14,37 +14,19 @@ import java.text.DecimalFormat;
 public class WordPair {
  
     private final String question, answer;
-    private double difficulty;
     
     //Example line: "Hest,Horse"
     public WordPair(String line) {
         String[] splits = line.split(",");
         question = splits[0];
         answer = splits[1];
-        difficulty = (splits.length > 2 ? Double.parseDouble(splits[2]) : calculateDifficulty());
     }
     
-    public WordPair(String danish, String english) {
-        this.question = danish;
-        this.answer = english;
+    public WordPair(String question, String answer) {
+        this.question = question;
+        this.answer = answer;
     }
 
-    /**
-     * @param value 
-     * -1 is the minimum amount of characters in a word, 25 is the maximum numbers of characters.
-     * @return Normalized range from 0.0 to 1.0
-     */
-    private double normalize(double value) {
-	return (value - 1) / (25 - 1);
-    }
-    
-    private double calculateDifficulty() {
-        DecimalFormat format = new DecimalFormat("#.##");
-        double normalized = normalize(question.length() + answer.length());
-        String formatted = format.format(normalized).replaceAll(",", ".");
-        return Double.parseDouble(formatted);
-    }
-    
     public String getDanish() {
         return question;
     }
@@ -52,14 +34,10 @@ public class WordPair {
     public String getEnglish() {
         return answer;
     }
-
-    public double getDifficulty() {
-        return difficulty;
-    }
     
     @Override
     public String toString() {
-        return question + "," + answer + "," + difficulty;
+        return question + "," + answer;
     }
  
     public boolean isEqual(String danish, String english) {

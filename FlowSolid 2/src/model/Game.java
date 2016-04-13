@@ -1,31 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
-/**
- *
- * @author CHRIS
- */
+import java.util.ArrayList;
+import java.util.Random;
+
+
 public class Game {
  
-    private String gameName, title, question, answer;
+    private String gameName, title, guiQuestion, guiAnswer;
+    private ArrayList<WordPair> pairs;
+    Random rng;
     
     public Game(String gameName, String title, String question, String answer) {
         this.gameName = gameName;
         this.title = title;
-        this.question = question;
-        this.answer = answer;
+        this.guiQuestion = question;
+        this.guiAnswer = answer;
+        rng = new Random();
+        pairs = new ArrayList<WordPair>();
     }
 
     public Game(String line) {
         String[] split = line.split(",");
         this.gameName = split[0];
         this.title = split[1];
-        this.question = split[2];
-        this.answer = split[3];
+        this.guiQuestion = split[2];
+        this.guiAnswer = split[3];
+        rng = new Random();
+        pairs = new ArrayList<WordPair>();
+    }
+    
+    public void addWordPair(WordPair tempPair){
+        pairs.add(tempPair);
     }
     
     public String getGameName() {
@@ -36,12 +42,26 @@ public class Game {
         return title;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getGuiQuestion() {
+        return guiQuestion;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getGuiAnswer() {
+        return guiAnswer;
+    }
+    
+    public WordPair getRandomWordPair(){
+        int generated = rng.nextInt(pairs.size());
+        
+        return pairs.get(generated);
+    }
+    
+    public ArrayList<WordPair> getPairs(){
+        return pairs;
+    }
+    
+    public String toString(){
+        return gameName + "," + title+ "," + guiQuestion + "," + guiAnswer;
     }
     
 }

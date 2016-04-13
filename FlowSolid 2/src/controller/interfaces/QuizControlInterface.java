@@ -36,6 +36,6 @@ public interface QuizControlInterface extends WordPairControlInterface {
        * Pre: 
        * Post: A new game is added to the existing collection of games
        */
-    void addGame(String gameName);
+    void addGame(String fullName);
 
 }

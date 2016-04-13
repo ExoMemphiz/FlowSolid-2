@@ -17,10 +17,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Constants;
 
-/**
- *
- * @author Chris
- */
+
+@Deprecated
 public class ControlPairs implements WordPairControlInterface {
 
     private ArrayList<WordPair> pairs = new ArrayList<>();
@@ -61,29 +59,7 @@ public class ControlPairs implements WordPairControlInterface {
     public String getRandomQuestion() {
         int random = r.nextInt(pairs.size());
         WordPair pair = pairs.get(random);
-        System.out.println("Pair difficulty: " + pair.getDifficulty());
-        System.out.println("Difficulty Rating: " + getDifficultyRating());
-        if (totalGuesses > 3 && inBetween(getDifficultyRating(), pair.getDifficulty(), 0.2)) {
-            return getRandomQuestion();
-        }
         return pair.getDanish();
-    }
-    
-    private boolean inBetween(double value, double pairDiff, double margin) {
-        //If 
-        return value - margin > pairDiff && value + margin < pairDiff;
-    }
-    
-    private double normalize(double value) {
-	return (value - 0) / (100 - 0);
-    }
-    
-    public double getDifficultyRating() {
-        DecimalFormat format = new DecimalFormat("#.##");
-        double temp = totalGuesses > 0 ? (((double) successRate) * 100) / ((double) totalGuesses) : 1.0;
-        double normalized = normalize(temp);
-        String formatted = format.format(normalized).replaceAll(",", ".");
-        return Double.parseDouble(formatted);
     }
 
     @Override

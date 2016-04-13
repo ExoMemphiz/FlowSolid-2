@@ -7,12 +7,31 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Constants;
+import model.FileHandler;
 import model.Game;
+import model.WordPair;
 
-public class ControlQuiz extends ControlPairs implements QuizControlInterface{
+public class ControlQuiz extends ControlPairs implements QuizControlInterface{ 
     
     private ArrayList<Game> games = null;
     private Game selectedGame;
+    
+    
+    public ControlQuiz(){
+        if (games == null) {
+            try {
+                games = new ArrayList<Game>();
+                ArrayList<String> fileIn = model.FileHandler.readFile(Constants.PATH_GAME_NAMES);
+                for (String s : fileIn) {
+                    if (s != null && !s.isEmpty() && !s.equals("")){
+                    games.add(new Game(s));
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ControlQuiz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     
     /**
     * This method returns a list of selectable games.
@@ -21,17 +40,7 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
     * Returns a list of names of selectable games 
     */
     public String[] getGameNames() {
-        if (games == null) {
-            try {
-                games = new ArrayList<Game>();
-                ArrayList<String> fileIN = model.FileHandler.readFile(Constants.PATH_GAME_NAMES);
-                for (String s : fileIN) {
-                    games.add(new Game(s));
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(ControlQuiz.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        
         int arraySize = games.size();
         String[] gameNames = new String[arraySize];
         for (int i = 0; i < games.size(); i++) {
@@ -40,8 +49,8 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
         }
         return gameNames;
     }
-
-
+    
+    
     /**
     * This method is used to select a game and mark it as the selected one. 
     * It should be called when the user has made a choice
@@ -52,7 +61,7 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
     public void selectGame(String gameName) {
         for (Game game : games) {
             if (game.getGameName().equals(gameName)) {
-                //Change game to this
+                selectedGame = game;
                 return;
             }
         }
@@ -74,8 +83,22 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
        * Pre: 
        * Post: A new game is added to the existing collection of games
        */
-    public void addGame(String gameName) {
-        //Add game with more info through parameter?
+    public void addGame(String fullLine) {
+        Game newGame = new Game(fullLine);
+        games.add(newGame);
+        FileHandler.appendToFile(Constants.PATH_GAME_NAMES, newGame.toString());
+        String newPath = "Games/" + newGame.getGameName() + ".txt";
+        FileHandler.saveFile(newPath, newGame.getPairs());
     }
+    
+    public void addQuestion(String fullLine)
+    {
+        WordPair newPair = new WordPair(fullLine);
+        selectedGame.addWordPair(newPair);
+        String newPath = "Games/" + selectedGame.getGameName() + ".txt";
+        FileHandler.appendToFile(newPath, newPair.toString());
+    }
+
+    
 
 }
