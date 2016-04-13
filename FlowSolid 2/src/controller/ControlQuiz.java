@@ -77,6 +77,9 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
         return selectedGame.getGameName();
     }
 
+    public Game getSelectedGame(){
+        return selectedGame;
+    }
 
       /**
        * This method must add a new game to the existing collection of games.

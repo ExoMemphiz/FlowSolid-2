@@ -1,8 +1,11 @@
 
 package model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Game {
@@ -28,6 +31,13 @@ public class Game {
         this.guiAnswer = split[3];
         rng = new Random();
         pairs = new ArrayList<WordPair>();
+        String path = "Games/" + this.gameName + ".txt";
+        try {
+            ArrayList<String> tempStrAr = FileHandler.readFile(path);
+            for (String s : tempStrAr) {
+                pairs.add(new WordPair(s));
+            }
+        } catch (Exception ex) {}
     }
     
     public void addWordPair(WordPair tempPair){

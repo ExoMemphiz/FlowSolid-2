@@ -7,7 +7,15 @@ package view;
 
 import controller.ControlQuiz;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
+import model.Game;
 import model.Player;
+import model.WordPair;
 
 /**
  *
@@ -16,20 +24,49 @@ import model.Player;
 public class GameGUI extends javax.swing.JFrame {
 
     ControlQuiz quiz;
+    ArrayList<Player> players;
+    Game selectedGame;
+    WordPair tempWp;
+     int difficulty, currentPlayer;
+     Random rng;
     
     /**
      * Creates new form GameGUI
      */
-    public GameGUI(ControlQuiz quiz, ArrayList<Player> players) {
-        this.quiz = quiz;
+    public GameGUI(ControlQuiz quiz, ArrayList<Player> players, int difficulty) {
         initComponents();
+        rng = new Random();
+        this.quiz = quiz;
+        this.players = players;
+        this.difficulty = difficulty;
+        this.selectedGame = quiz.getSelectedGame();
+        this.currentPlayer = rng.nextInt(players.size());
+        jLabelGameTitle.setText(selectedGame.getTitle());
+        jLabelFlavorAnswer.setText(selectedGame.getGuiAnswer());
+        jLabelFlavorQuestion.setText(selectedGame.getGuiQuestion());
+        jButtonNewQuestionActionPerformed(null); // New Question
         setVisible(true);
         setLocationRelativeTo(null);
+        initPlayers();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex){}
     }
     
     public void CallMenuGUI() {
         new MenuGUI(quiz);
         dispose();
+    }
+    
+    public void initPlayers()
+    {
+        DefaultTableModel model = (DefaultTableModel) jTableStats.getModel();
+        model.setRowCount(players.size());
+        for (int i = 0; i < players.size(); i++){
+            Player temp = players.get(i);
+            model.setValueAt(temp.getName(), i, 0);
+            model.setValueAt(temp.getPoints(), i, 1);
+        }
     }
     
     /**
@@ -43,17 +80,19 @@ public class GameGUI extends javax.swing.JFrame {
 
         jPanelLanguageLearning = new javax.swing.JPanel();
         jLabelGameTitle = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextFieldDanish = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextFieldEnglish = new javax.swing.JTextField();
+        jLabelFlavorQuestion = new javax.swing.JLabel();
+        jTextFieldQuestion = new javax.swing.JTextField();
+        jLabelFlavorAnswer = new javax.swing.JLabel();
+        jTextFieldAnswer = new javax.swing.JTextField();
         jTextFieldResult = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jButtonGuess = new javax.swing.JButton();
+        jButtonNewQuestion = new javax.swing.JButton();
+        jPanelOuterStats = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableStats = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabelplayerName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game Window");
@@ -64,87 +103,115 @@ public class GameGUI extends javax.swing.JFrame {
         jLabelGameTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabelGameTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelGameTitle.setText("GAME TITLE HERE");
-        jPanelLanguageLearning.add(jLabelGameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 304, 38));
+        jPanelLanguageLearning.add(jLabelGameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 304, 38));
 
-        jLabel5.setText("Question:");
-        jPanelLanguageLearning.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 50, -1));
+        jLabelFlavorQuestion.setText("Question:");
+        jPanelLanguageLearning.add(jLabelFlavorQuestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 50, -1));
 
-        jTextFieldDanish.setEditable(false);
-        jPanelLanguageLearning.add(jTextFieldDanish, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 190, -1));
+        jTextFieldQuestion.setEditable(false);
+        jPanelLanguageLearning.add(jTextFieldQuestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 190, -1));
 
-        jLabel6.setText("Answer:");
-        jPanelLanguageLearning.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 50, -1));
-
-        jTextFieldEnglish.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEnglishActionPerformed(evt);
-            }
-        });
-        jPanelLanguageLearning.add(jTextFieldEnglish, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 102, 190, -1));
+        jLabelFlavorAnswer.setText("Answer:");
+        jPanelLanguageLearning.add(jLabelFlavorAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 50, -1));
+        jPanelLanguageLearning.add(jTextFieldAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 190, -1));
 
         jTextFieldResult.setEditable(false);
-        jPanelLanguageLearning.add(jTextFieldResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 190, -1));
+        jPanelLanguageLearning.add(jTextFieldResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 190, -1));
 
         jLabel7.setText("Result:");
-        jPanelLanguageLearning.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 50, -1));
+        jPanelLanguageLearning.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 50, -1));
 
-        jButton1.setText("jButton1");
-        jPanelLanguageLearning.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
+        jButtonGuess.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButtonGuess.setText("Guess!");
+        jButtonGuess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuessActionPerformed(evt);
+            }
+        });
+        jPanelLanguageLearning.add(jButtonGuess, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 190, -1));
 
-        jButton2.setText("jButton2");
-        jPanelLanguageLearning.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
+        jButtonNewQuestion.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButtonNewQuestion.setText("New Question!");
+        jButtonNewQuestion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNewQuestionActionPerformed(evt);
+            }
+        });
+        jPanelLanguageLearning.add(jButtonNewQuestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 190, -1));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Player Stats")));
+        jPanelOuterStats.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Player Stats")));
 
-        jLabel1.setText("Player bla");
+        jTableStats.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Name", "Points"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
 
-        jTextField1.setText("tro på det");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTableStats.setEnabled(false);
+        jScrollPane1.setViewportView(jTableStats);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanelOuterStatsLayout = new javax.swing.GroupLayout(jPanelOuterStats);
+        jPanelOuterStats.setLayout(jPanelOuterStatsLayout);
+        jPanelOuterStatsLayout.setHorizontalGroup(
+            jPanelOuterStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOuterStatsLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(266, Short.MAX_VALUE))
+        jPanelOuterStatsLayout.setVerticalGroup(
+            jPanelOuterStatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOuterStatsLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanelLanguageLearning.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 220, 320));
+        jPanelLanguageLearning.add(jPanelOuterStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 220, 320));
 
-        getContentPane().add(jPanelLanguageLearning, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 370));
+        jLabel1.setText("Current Player:");
+        jPanelLanguageLearning.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+
+        jLabelplayerName.setText("playerName");
+        jPanelLanguageLearning.add(jLabelplayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+
+        getContentPane().add(jPanelLanguageLearning, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldEnglishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEnglishActionPerformed
+    private void jButtonGuessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuessActionPerformed
         
-    }//GEN-LAST:event_jTextFieldEnglishActionPerformed
+    }//GEN-LAST:event_jButtonGuessActionPerformed
 
+    private void jButtonNewQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewQuestionActionPerformed
+        tempWp = selectedGame.getRandomWordPair();
+        jTextFieldQuestion.setText(tempWp.getQuestion());
+    }//GEN-LAST:event_jButtonNewQuestionActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonGuess;
+    private javax.swing.JButton jButtonNewQuestion;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelFlavorAnswer;
+    private javax.swing.JLabel jLabelFlavorQuestion;
     private javax.swing.JLabel jLabelGameTitle;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabelplayerName;
     private javax.swing.JPanel jPanelLanguageLearning;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextFieldDanish;
-    private javax.swing.JTextField jTextFieldEnglish;
+    private javax.swing.JPanel jPanelOuterStats;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableStats;
+    private javax.swing.JTextField jTextFieldAnswer;
+    private javax.swing.JTextField jTextFieldQuestion;
     private javax.swing.JTextField jTextFieldResult;
     // End of variables declaration//GEN-END:variables
 }

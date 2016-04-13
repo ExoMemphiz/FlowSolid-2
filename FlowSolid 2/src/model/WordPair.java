@@ -27,11 +27,11 @@ public class WordPair {
         this.answer = answer;
     }
 
-    public String getDanish() {
+    public String getQuestion() {
         return question;
     }
 
-    public String getEnglish() {
+    public String getAnswer() {
         return answer;
     }
     

@@ -59,15 +59,15 @@ public class ControlPairs implements WordPairControlInterface {
     public String getRandomQuestion() {
         int random = r.nextInt(pairs.size());
         WordPair pair = pairs.get(random);
-        return pair.getDanish();
+        return pair.getQuestion();
     }
 
     @Override
     public boolean checkGuess(String question, String guess) {
         totalGuesses++;
         for (WordPair pair : pairs) {
-            if (pair.getDanish().equals(question)) {
-                if (pair.getEnglish().equals(guess)) {
+            if (pair.getQuestion().equals(question)) {
+                if (pair.getAnswer().equals(guess)) {
                     successRate++;
                     return true;
                 }

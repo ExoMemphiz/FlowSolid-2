@@ -10,19 +10,14 @@ import javax.swing.JOptionPane;
 import model.Player;
 import controller.ControlQuiz;
 import javax.swing.ComboBoxModel;
+import javax.swing.UIManager;
 
-/**
- *
- * @author ViktorKim
- */
+
 public class MenuGUI extends javax.swing.JFrame {
 
     private ControlQuiz quiz;
     private ArrayList<Player> players;
     
-    /**
-     * Creates new form MenuFrame
-     */
     public MenuGUI(ControlQuiz quiz) {
         this.quiz = quiz;
         initComponents();
@@ -30,6 +25,9 @@ public class MenuGUI extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         players = new ArrayList<>();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex){}
     }
 
     public void setModel() {
@@ -38,8 +36,8 @@ public class MenuGUI extends javax.swing.JFrame {
         jComboBoxGameType.setModel(model);
     }
     
-    public void CallGameGUI() {
-        new GameGUI(quiz, players);
+    public void CallGameGUI(int difficulty) {
+        new GameGUI(quiz, players, difficulty);
         dispose();
     }
     
@@ -96,27 +94,27 @@ public class MenuGUI extends javax.swing.JFrame {
         jPanelMainMenu.setLayout(jPanelMainMenuLayout);
         jPanelMainMenuLayout.setHorizontalGroup(
             jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainMenuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(88, 88, 88))
             .addGroup(jPanelMainMenuLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainMenuLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelMainMenuLayout.createSequentialGroup()
                         .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxGameType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jFormattedTextFieldPlayerCount, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(35, Short.MAX_VALUE))
                     .addGroup(jPanelMainMenuLayout.createSequentialGroup()
-                        .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSliderDifficulty, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                            .addComponent(jButtonSelectGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonSelectGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(20, 20, 20))))
+            .addGroup(jPanelMainMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSliderDifficulty, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
         );
         jPanelMainMenuLayout.setVerticalGroup(
             jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,19 +149,25 @@ public class MenuGUI extends javax.swing.JFrame {
         //Player creation
         try {
             int amountPlayers = Integer.parseInt(jFormattedTextFieldPlayerCount.getText());
-            for (int i = 0; i < amountPlayers; i++){ // No such thing as player 0 
-                String name = JOptionPane.showInputDialog("Name of player " + (i + 1) + "?");
-                if (name != null && !name.isEmpty() && !name.equals("")) {
-                    Player tempPlayer = new Player(name);               
-                    players.add(tempPlayer);
-                    //Funktion med pass af arraylist af players + difficulty + spil valg
-                } else {
-                    i--;
+            if (amountPlayers > 0){
+                for (int i = 0; i < amountPlayers; i++){ // No such thing as player 0 
+                    String name = JOptionPane.showInputDialog("Name of player " + (i + 1) + "?");
+                    if (name != null && !name.isEmpty() && !name.equals("")) {
+                        Player tempPlayer = new Player(name);               
+                        players.add(tempPlayer);
+                        //Funktion med pass af arraylist af players + difficulty + spil valg
+                    } else {
+                        i--; // Hack til at tvinge folk til at indtaste et navn
+                    }
                 }
+                CallGameGUI(difficulty);
             }
-            CallGameGUI();
+            else{
+                JOptionPane.showMessageDialog(this, "Please enter a number greater than 0!");
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid number of players!");
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Please enter a valid number of players!");
         }
     }//GEN-LAST:event_jButtonSelectGameActionPerformed
 
