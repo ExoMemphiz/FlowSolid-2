@@ -85,6 +85,7 @@ public class GameGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabelplayerName = new javax.swing.JLabel();
         jLabelPicture = new javax.swing.JLabel();
+        jButtonReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game Window");
@@ -177,6 +178,14 @@ public class GameGUI extends javax.swing.JFrame {
         jPanelLanguageLearning.add(jLabelplayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
         jPanelLanguageLearning.add(jLabelPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 140, 110));
 
+        jButtonReturn.setText("Return");
+        jButtonReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReturnActionPerformed(evt);
+            }
+        });
+        jPanelLanguageLearning.add(jButtonReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 100, -1));
+
         getContentPane().add(jPanelLanguageLearning, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 380));
 
         pack();
@@ -214,10 +223,15 @@ public class GameGUI extends javax.swing.JFrame {
         jTextFieldResult.setText("");
         jButtonNewQuestion.setEnabled(false);
     }//GEN-LAST:event_jButtonNewQuestionActionPerformed
+
+    private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
+        CallMenuGUI();
+    }//GEN-LAST:event_jButtonReturnActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGuess;
     private javax.swing.JButton jButtonNewQuestion;
+    private javax.swing.JButton jButtonReturn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFlavorAnswer;
     private javax.swing.JLabel jLabelFlavorQuestion;

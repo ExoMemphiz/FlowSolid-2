@@ -336,7 +336,12 @@ public class MenuGUI extends javax.swing.JFrame {
                         i--; // Hack til at tvinge folk til at indtaste et navn
                     }
                 }
-                CallGameGUI(difficulty);
+                try {
+                    CallGameGUI(difficulty);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "No questions for selected game found!");
+                    e.printStackTrace();
+                }
            }
             else{
                 JOptionPane.showMessageDialog(this, "Please enter a number greater than 0!");
@@ -391,6 +396,7 @@ public class MenuGUI extends javax.swing.JFrame {
         WordPair wp = new WordPair(firstQuestion, firstAnswer);
         g.addWordPair(wp);
         g.saveToText(wp);
+        setModel();
     }//GEN-LAST:event_jButtonAddQuizActionPerformed
     
     private void showAdmin(){
