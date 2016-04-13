@@ -95,24 +95,24 @@ public class GameGUI extends javax.swing.JFrame {
         jLabelGameTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabelGameTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelGameTitle.setText("GAME TITLE HERE");
-        jPanelLanguageLearning.add(jLabelGameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 304, 38));
+        jPanelLanguageLearning.add(jLabelGameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 304, 38));
 
         jLabelFlavorQuestion.setText("Question:");
         jPanelLanguageLearning.add(jLabelFlavorQuestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 50, -1));
 
         jTextFieldQuestion.setEditable(false);
-        jPanelLanguageLearning.add(jTextFieldQuestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 190, -1));
+        jPanelLanguageLearning.add(jTextFieldQuestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 400, -1));
 
         jLabelFlavorAnswer.setText("Answer:");
         jPanelLanguageLearning.add(jLabelFlavorAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 50, -1));
-        jPanelLanguageLearning.add(jTextFieldAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 190, -1));
+        jPanelLanguageLearning.add(jTextFieldAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 400, -1));
 
         jTextFieldResult.setEditable(false);
         jTextFieldResult.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jPanelLanguageLearning.add(jTextFieldResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 220, -1));
+        jPanelLanguageLearning.add(jTextFieldResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 400, -1));
 
         jLabel7.setText("Result:");
-        jPanelLanguageLearning.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 50, -1));
+        jPanelLanguageLearning.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 50, -1));
 
         jButtonGuess.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonGuess.setText("Guess!");
@@ -121,7 +121,7 @@ public class GameGUI extends javax.swing.JFrame {
                 jButtonGuessActionPerformed(evt);
             }
         });
-        jPanelLanguageLearning.add(jButtonGuess, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 190, -1));
+        jPanelLanguageLearning.add(jButtonGuess, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 190, -1));
 
         jButtonNewQuestion.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButtonNewQuestion.setText("New Question");
@@ -130,7 +130,7 @@ public class GameGUI extends javax.swing.JFrame {
                 jButtonNewQuestionActionPerformed(evt);
             }
         });
-        jPanelLanguageLearning.add(jButtonNewQuestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 190, -1));
+        jPanelLanguageLearning.add(jButtonNewQuestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 190, -1));
 
         jPanelOuterStats.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Player Stats")));
 
@@ -168,16 +168,16 @@ public class GameGUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanelLanguageLearning.add(jPanelOuterStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 220, 320));
+        jPanelLanguageLearning.add(jPanelOuterStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 220, 320));
 
         jLabel1.setText("Current Player:");
         jPanelLanguageLearning.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jLabelplayerName.setText("playerName");
         jPanelLanguageLearning.add(jLabelplayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
-        jPanelLanguageLearning.add(jLabelPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
+        jPanelLanguageLearning.add(jLabelPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 0, -1));
 
-        getContentPane().add(jPanelLanguageLearning, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 380));
+        getContentPane().add(jPanelLanguageLearning, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -200,6 +200,7 @@ public class GameGUI extends javax.swing.JFrame {
             }
         }
         jButtonGuess.setEnabled(false);
+        jButtonNewQuestion.setEnabled(true);
         initPlayers();
     }//GEN-LAST:event_jButtonGuessActionPerformed
 
@@ -210,6 +211,7 @@ public class GameGUI extends javax.swing.JFrame {
         jTextFieldQuestion.setText(tempWp.getQuestion());
         jTextFieldAnswer.setText("");
         jButtonGuess.setEnabled(true);
+        jButtonNewQuestion.setEnabled(false);
     }//GEN-LAST:event_jButtonNewQuestionActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

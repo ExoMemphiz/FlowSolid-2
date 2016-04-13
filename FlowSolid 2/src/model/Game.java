@@ -21,6 +21,7 @@ public class Game {
         this.guiAnswer = answer;
         rng = new Random();
         pairs = new ArrayList<WordPair>();
+        loadFromText();
     }
 
     public Game(String line) {
@@ -31,12 +32,24 @@ public class Game {
         this.guiAnswer = split[3];
         rng = new Random();
         pairs = new ArrayList<WordPair>();
+        loadFromText();
+    }
+    
+    public void loadFromText(){
         String path = "Games/" + this.gameName + ".txt";
         try {
             ArrayList<String> tempStrAr = FileHandler.readFile(path);
             for (String s : tempStrAr) {
                 pairs.add(new WordPair(s));
             }
+        } catch (Exception ex) {}
+    }
+    
+    public void saveToText(WordPair wp){
+        String path = "Games/" + this.gameName + ".txt";
+        String line = wp.toString();
+        try {
+            FileHandler.appendToFile(path, line);
         } catch (Exception ex) {}
     }
     
