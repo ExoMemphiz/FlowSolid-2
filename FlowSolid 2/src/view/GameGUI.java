@@ -76,7 +76,7 @@ public class GameGUI extends javax.swing.JFrame {
         jLabelFlavorAnswer = new javax.swing.JLabel();
         jTextFieldAnswer = new javax.swing.JTextField();
         jTextFieldResult = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelResult = new javax.swing.JLabel();
         jButtonGuess = new javax.swing.JButton();
         jButtonNewQuestion = new javax.swing.JButton();
         jPanelOuterStats = new javax.swing.JPanel();
@@ -111,8 +111,8 @@ public class GameGUI extends javax.swing.JFrame {
         jTextFieldResult.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jPanelLanguageLearning.add(jTextFieldResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 400, -1));
 
-        jLabel7.setText("Result:");
-        jPanelLanguageLearning.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 50, -1));
+        jLabelResult.setText("Result:");
+        jPanelLanguageLearning.add(jLabelResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 50, -1));
 
         jButtonGuess.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonGuess.setText("Guess!");
@@ -175,7 +175,7 @@ public class GameGUI extends javax.swing.JFrame {
 
         jLabelplayerName.setText("playerName");
         jPanelLanguageLearning.add(jLabelplayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
-        jPanelLanguageLearning.add(jLabelPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 0, -1));
+        jPanelLanguageLearning.add(jLabelPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 140, 110));
 
         getContentPane().add(jPanelLanguageLearning, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 380));
 
@@ -218,11 +218,11 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGuess;
     private javax.swing.JButton jButtonNewQuestion;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelFlavorAnswer;
     private javax.swing.JLabel jLabelFlavorQuestion;
     private javax.swing.JLabel jLabelGameTitle;
     private javax.swing.JLabel jLabelPicture;
+    private javax.swing.JLabel jLabelResult;
     private javax.swing.JLabel jLabelplayerName;
     private javax.swing.JPanel jPanelLanguageLearning;
     private javax.swing.JPanel jPanelOuterStats;
