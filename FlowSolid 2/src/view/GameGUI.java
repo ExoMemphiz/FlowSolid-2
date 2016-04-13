@@ -5,34 +5,25 @@
  */
 package view;
 
-import controller.ControlQuiz;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import controller.*;
+import java.util.*;
+import javax.swing.*;
+import model.*;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import model.Game;
-import model.Player;
-import model.WordPair;
 
-/**
- *
- * @author ViktorKim
- */
+
 public class GameGUI extends javax.swing.JFrame {
-
     ControlQuiz quiz;
     ArrayList<Player> players;
     Game selectedGame;
     WordPair tempWp;
-     int difficulty, currentPlayer;
+     int difficulty, currentPlayerNum;
      Random rng;
-    
-    /**
-     * Creates new form GameGUI
-     */
+     ImageIcon imageRight = new ImageIcon("Extra/happy.jpg");
+     ImageIcon imageWrong = new ImageIcon("Extra/mille.jpg");
+     ImageIcon imageNeutral = new ImageIcon("Extra/haandbold.jpg");
+
     public GameGUI(ControlQuiz quiz, ArrayList<Player> players, int difficulty) {
         initComponents();
         rng = new Random();
@@ -40,7 +31,7 @@ public class GameGUI extends javax.swing.JFrame {
         this.players = players;
         this.difficulty = difficulty;
         this.selectedGame = quiz.getSelectedGame();
-        this.currentPlayer = rng.nextInt(players.size());
+        this.currentPlayerNum = rng.nextInt(players.size());
         jLabelGameTitle.setText(selectedGame.getTitle());
         jLabelFlavorAnswer.setText(selectedGame.getGuiAnswer());
         jLabelFlavorQuestion.setText(selectedGame.getGuiQuestion());
@@ -93,6 +84,7 @@ public class GameGUI extends javax.swing.JFrame {
         jTableStats = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabelplayerName = new javax.swing.JLabel();
+        jLabelPicture = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game Window");
@@ -116,10 +108,11 @@ public class GameGUI extends javax.swing.JFrame {
         jPanelLanguageLearning.add(jTextFieldAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 190, -1));
 
         jTextFieldResult.setEditable(false);
-        jPanelLanguageLearning.add(jTextFieldResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 190, -1));
+        jTextFieldResult.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanelLanguageLearning.add(jTextFieldResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 220, -1));
 
         jLabel7.setText("Result:");
-        jPanelLanguageLearning.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 50, -1));
+        jPanelLanguageLearning.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 50, -1));
 
         jButtonGuess.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonGuess.setText("Guess!");
@@ -131,7 +124,7 @@ public class GameGUI extends javax.swing.JFrame {
         jPanelLanguageLearning.add(jButtonGuess, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 190, -1));
 
         jButtonNewQuestion.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButtonNewQuestion.setText("New Question!");
+        jButtonNewQuestion.setText("New Question");
         jButtonNewQuestion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNewQuestionActionPerformed(evt);
@@ -182,6 +175,7 @@ public class GameGUI extends javax.swing.JFrame {
 
         jLabelplayerName.setText("playerName");
         jPanelLanguageLearning.add(jLabelplayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+        jPanelLanguageLearning.add(jLabelPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
 
         getContentPane().add(jPanelLanguageLearning, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 380));
 
@@ -189,12 +183,33 @@ public class GameGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuessActionPerformed
+        String guess = jTextFieldAnswer.getText();
+        String answer = tempWp.getAnswer();
+        Player tempPlayer = players.get(currentPlayerNum);
         
+        if (guess.equalsIgnoreCase(answer)){
+            tempPlayer.addPoint();
+            jTextFieldResult.setText("Correct!");
+            jLabelPicture.setIcon(imageRight);
+        }else{
+            jTextFieldResult.setText("Wrong guess! Real Answer: " + answer);
+            jLabelPicture.setIcon(imageWrong);
+            currentPlayerNum++;
+            if (currentPlayerNum >= players.size()){
+                currentPlayerNum = 0;
+            }
+        }
+        jButtonGuess.setEnabled(false);
+        initPlayers();
     }//GEN-LAST:event_jButtonGuessActionPerformed
 
     private void jButtonNewQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewQuestionActionPerformed
+        jLabelPicture.setIcon(imageNeutral);
+        jLabelplayerName.setText(players.get(currentPlayerNum).getName());
         tempWp = selectedGame.getRandomWordPair();
         jTextFieldQuestion.setText(tempWp.getQuestion());
+        jTextFieldAnswer.setText("");
+        jButtonGuess.setEnabled(true);
     }//GEN-LAST:event_jButtonNewQuestionActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -205,6 +220,7 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFlavorAnswer;
     private javax.swing.JLabel jLabelFlavorQuestion;
     private javax.swing.JLabel jLabelGameTitle;
+    private javax.swing.JLabel jLabelPicture;
     private javax.swing.JLabel jLabelplayerName;
     private javax.swing.JPanel jPanelLanguageLearning;
     private javax.swing.JPanel jPanelOuterStats;

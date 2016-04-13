@@ -50,6 +50,22 @@ public class MenuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialogAdmin = new javax.swing.JDialog();
+        jTabbedPaneAdmin = new javax.swing.JTabbedPane();
+        jPanelNewQuiz = new javax.swing.JPanel();
+        jPanelNewQuestions = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldAddDanish = new javax.swing.JTextField();
+        jTextFieldAddEnglish = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jButtonAddPair = new javax.swing.JButton();
+        jPanelLookInfo = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextFieldDictionaryInput = new javax.swing.JTextField();
+        jTextFieldDictionaryOutput = new javax.swing.JTextField();
+        jButtonDictionaryLookUp = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         jPanelMainMenu = new javax.swing.JPanel();
         jComboBoxGameType = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -58,6 +74,114 @@ public class MenuGUI extends javax.swing.JFrame {
         jSliderDifficulty = new javax.swing.JSlider();
         jLabel3 = new javax.swing.JLabel();
         jButtonSelectGame = new javax.swing.JButton();
+
+        jDialogAdmin.setTitle("Admin Panel");
+        jDialogAdmin.setResizable(false);
+
+        javax.swing.GroupLayout jPanelNewQuizLayout = new javax.swing.GroupLayout(jPanelNewQuiz);
+        jPanelNewQuiz.setLayout(jPanelNewQuizLayout);
+        jPanelNewQuizLayout.setHorizontalGroup(
+            jPanelNewQuizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 395, Short.MAX_VALUE)
+        );
+        jPanelNewQuizLayout.setVerticalGroup(
+            jPanelNewQuizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 272, Short.MAX_VALUE)
+        );
+
+        jTabbedPaneAdmin.addTab("Add new Quiz", jPanelNewQuiz);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Add pair");
+
+        jLabel5.setText("Question");
+
+        jLabel6.setText("Answer");
+
+        jButtonAddPair.setText("Add Pair");
+        jButtonAddPair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddPairActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelNewQuestionsLayout = new javax.swing.GroupLayout(jPanelNewQuestions);
+        jPanelNewQuestions.setLayout(jPanelNewQuestionsLayout);
+        jPanelNewQuestionsLayout.setHorizontalGroup(
+            jPanelNewQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNewQuestionsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelNewQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelNewQuestionsLayout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelNewQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonAddPair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldAddEnglish)))
+                    .addGroup(jPanelNewQuestionsLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelNewQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldAddDanish))))
+                .addContainerGap(211, Short.MAX_VALUE))
+        );
+        jPanelNewQuestionsLayout.setVerticalGroup(
+            jPanelNewQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelNewQuestionsLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelNewQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldAddDanish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelNewQuestionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextFieldAddEnglish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonAddPair)
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+
+        jTabbedPaneAdmin.addTab("Add Questions to Quiz", jPanelNewQuestions);
+
+        jPanelLookInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Word dictionary");
+        jPanelLookInfo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 191, 30));
+        jPanelLookInfo.add(jTextFieldDictionaryInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 78, 130, -1));
+
+        jTextFieldDictionaryOutput.setEditable(false);
+        jPanelLookInfo.add(jTextFieldDictionaryOutput, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 109, 130, -1));
+
+        jButtonDictionaryLookUp.setText("Look Up");
+        jButtonDictionaryLookUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDictionaryLookUpActionPerformed(evt);
+            }
+        });
+        jPanelLookInfo.add(jButtonDictionaryLookUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 140, -1, -1));
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Auto Detect Language");
+        jPanelLookInfo.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 52, 130, -1));
+
+        jTabbedPaneAdmin.addTab("Lookup Info", jPanelLookInfo);
+
+        javax.swing.GroupLayout jDialogAdminLayout = new javax.swing.GroupLayout(jDialogAdmin.getContentPane());
+        jDialogAdmin.getContentPane().setLayout(jDialogAdminLayout);
+        jDialogAdminLayout.setHorizontalGroup(
+            jDialogAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPaneAdmin)
+        );
+        jDialogAdminLayout.setVerticalGroup(
+            jDialogAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPaneAdmin)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
@@ -149,7 +273,10 @@ public class MenuGUI extends javax.swing.JFrame {
         //Player creation
         try {
             int amountPlayers = Integer.parseInt(jFormattedTextFieldPlayerCount.getText());
-            if (amountPlayers > 0){
+            if ((difficulty == 2) && (amountPlayers == 1337)){
+                showAdmin();
+            }
+          else if (amountPlayers > 0){
                 for (int i = 0; i < amountPlayers; i++){ // No such thing as player 0 
                     String name = JOptionPane.showInputDialog("Name of player " + (i + 1) + "?");
                     if (name != null && !name.isEmpty() && !name.equals("")) {
@@ -161,7 +288,7 @@ public class MenuGUI extends javax.swing.JFrame {
                     }
                 }
                 CallGameGUI(difficulty);
-            }
+           }
             else{
                 JOptionPane.showMessageDialog(this, "Please enter a number greater than 0!");
             }
@@ -171,14 +298,50 @@ public class MenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonSelectGameActionPerformed
 
+    private void jButtonDictionaryLookUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDictionaryLookUpActionPerformed
+        String text = jTextFieldDictionaryInput.getText();
+        String translated = control.lookup(text);
+        if (translated == null) {
+            translated = "Unknown word!";
+        }
+        jTextFieldDictionaryOutput.setText(translated);
+    }//GEN-LAST:event_jButtonDictionaryLookUpActionPerformed
+
+    private void jButtonAddPairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddPairActionPerformed
+        control.add(jTextFieldAddDanish.getText(), jTextFieldAddEnglish.getText());
+        control.save(Constants.PATH_GAME_LINES);
+        control.load(Constants.PATH_GAME_LINES);
+        jTextFieldAddDanish.setText("");
+        jTextFieldAddEnglish.setText("");
+    }//GEN-LAST:event_jButtonAddPairActionPerformed
+    
+    private void showAdmin(){
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAddPair;
+    private javax.swing.JButton jButtonDictionaryLookUp;
     private javax.swing.JButton jButtonSelectGame;
     private javax.swing.JComboBox<String> jComboBoxGameType;
+    private javax.swing.JDialog jDialogAdmin;
     private javax.swing.JFormattedTextField jFormattedTextFieldPlayerCount;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanelLookInfo;
     private javax.swing.JPanel jPanelMainMenu;
+    private javax.swing.JPanel jPanelNewQuestions;
+    private javax.swing.JPanel jPanelNewQuiz;
     private javax.swing.JSlider jSliderDifficulty;
+    private javax.swing.JTabbedPane jTabbedPaneAdmin;
+    private javax.swing.JTextField jTextFieldAddDanish;
+    private javax.swing.JTextField jTextFieldAddEnglish;
+    private javax.swing.JTextField jTextFieldDictionaryInput;
+    private javax.swing.JTextField jTextFieldDictionaryOutput;
     // End of variables declaration//GEN-END:variables
 }
