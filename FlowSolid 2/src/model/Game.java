@@ -70,6 +70,15 @@ public class Game {
         return pairs;
     }
     
+    public boolean hasQuestion(String question) {
+        for (WordPair pair : pairs) {
+            if (pair.getQuestion().equalsIgnoreCase(question)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public String toString(){
         return gameName + "," + title+ "," + guiQuestion + "," + guiAnswer;
     }
