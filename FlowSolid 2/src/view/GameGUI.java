@@ -211,6 +211,7 @@ public class GameGUI extends javax.swing.JFrame {
         jTextFieldQuestion.setText(tempWp.getQuestion());
         jTextFieldAnswer.setText("");
         jButtonGuess.setEnabled(true);
+        jTextFieldResult.setText("");
         jButtonNewQuestion.setEnabled(false);
     }//GEN-LAST:event_jButtonNewQuestionActionPerformed
     
