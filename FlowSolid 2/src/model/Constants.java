@@ -6,8 +6,7 @@
 package model;
 
 /**
- *
- * @author CHRIS
+ * This class holds all constant values needed throughout the program to be statically available.
  */
 public class Constants {
  

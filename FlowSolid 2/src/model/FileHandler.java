@@ -16,11 +16,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- *
- * @author Chris
+ * This class handles all file reading/writing, as well as appending.
  */
 public class FileHandler {
  
+    /**
+     * This method reads a specified path's files' raw data, and returns an arraylist containing every line as a new arraylist index.
+     * @param url
+     * @return
+     */
     public static ArrayList<String> readFile(String url) throws FileNotFoundException, IOException {
         ArrayList<String> strings = new ArrayList<>();
         File f = new File(url);
@@ -40,6 +44,11 @@ public class FileHandler {
         return strings;
     }
     
+    /**
+     * Overwrites existing data on a specified file with data parameter.
+     * @param filePath
+     * @param data 
+     */
     public static void cleanWrite(String filePath, String... data) {
         try {
             File file = new File(filePath);
@@ -56,6 +65,11 @@ public class FileHandler {
         }
     }
     
+    /**
+     * Appends data to specified file.
+     * @param filePath
+     * @param data 
+     */
     public static void appendToFile(String filePath, String... data) {
         try {
             File file = new File(filePath);
@@ -73,6 +87,11 @@ public class FileHandler {
         }
     }
     
+    /**
+     * 
+     * @param filePath
+     * @param pairs 
+     */
     public static void saveFile(String filePath, ArrayList<WordPair> pairs) {
         try {
             File file = new File(filePath);

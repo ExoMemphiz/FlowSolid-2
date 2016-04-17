@@ -1,17 +1,16 @@
 
 package model;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-
-public class Game {
+/**
+ * This class holds the info about the game, and also all the questions contained in each game.
+ */
+public final class Game {
  
-    private String gameName, title, guiQuestion, guiAnswer;
-    private ArrayList<WordPair> pairs;
+    private final String gameName, title, guiQuestion, guiAnswer;
+    private final ArrayList<WordPair> pairs;
     Random rng;
     
     public Game(String gameName, String title, String question, String answer) {
@@ -20,7 +19,7 @@ public class Game {
         this.guiQuestion = question;
         this.guiAnswer = answer;
         rng = new Random();
-        pairs = new ArrayList<WordPair>();
+        pairs = new ArrayList<>();
         loadFromText();
     }
 
@@ -31,7 +30,7 @@ public class Game {
         this.guiQuestion = split[2];
         this.guiAnswer = split[3];
         rng = new Random();
-        pairs = new ArrayList<WordPair>();
+        pairs = new ArrayList<>();
         loadFromText();
     }
     

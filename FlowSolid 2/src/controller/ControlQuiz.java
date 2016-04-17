@@ -1,4 +1,3 @@
-
 package controller;
 
 import controller.interfaces.QuizControlInterface;
@@ -55,7 +54,6 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
         return gameNames;
     }
     
-    
     /**
     * This method is used to select a game and mark it as the selected one. 
     * It should be called when the user has made a choice
@@ -71,7 +69,6 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
             }
         }
     }
-
 
     /**
     * This method returns the name of the currently selected game.
