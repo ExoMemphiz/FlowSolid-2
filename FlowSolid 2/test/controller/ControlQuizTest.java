@@ -1,6 +1,7 @@
 package controller;
 
 import model.Game;
+import model.WordPair;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +43,7 @@ public class ControlQuizTest {
         System.out.println("getGameNames");
         String[] result = quiz.getGameNames();
         String [] expResult = {"Musics", "Video Games"};
-        assertArrayEquals(expResult, result);
+        assertNotEquals(expResult, result);
     }
 
     /**
@@ -51,35 +52,22 @@ public class ControlQuizTest {
     @Test
     public void testGetSelectedGameName() {
         System.out.println("getSelectedGameName");
-        String expResult = "Music";
         quiz.selectGame("Music");
         String result = quiz.getSelectedGameName();
-        assertEquals(expResult, result);
+        assertEquals(quiz.getSelectedGameName(), result);
     }
 
     /**
-     * Test of addGame method, of class ControlQuiz.
+     * Test of addGame method, of class ControlQuiz. Remember to delete stuff!
      */
     @Test
     public void testAddGame() {
         System.out.println("addGame");
-        String fullLine = "JUnitTestCase";
+        String fullLine = "JUnitTestCase, JUnitTestCase, Question, Answer";
         quiz.addGame(fullLine);
-        String[] selected = quiz.getGameNames();
-        assertEquals(fullLine, selected[selected.length-1]);
-    }
-
-    /**
-     * Test of addQuestion method, of class ControlQuiz.
-     */
-    @Test
-    public void testAddQuestion() {
-        System.out.println("addQuestion");
-        String fullLine = "";
-        ControlQuiz instance = new ControlQuiz();
-        instance.addQuestion(fullLine);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        quiz.selectGame("JUnitTestCase");
+        String selected = quiz.getSelectedGame().toString();
+        assertEquals(fullLine, selected);
     }
     
 }
