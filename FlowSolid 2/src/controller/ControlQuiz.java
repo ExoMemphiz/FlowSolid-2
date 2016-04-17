@@ -1,6 +1,6 @@
+
 package controller;
 
-import controller.ControlPairs;
 import controller.interfaces.QuizControlInterface;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,20 +11,25 @@ import model.FileHandler;
 import model.Game;
 import model.WordPair;
 
+/**
+ * This class is the new Control class, and supports creating new games as well as questions for any quiz
+ */
 public class ControlQuiz extends ControlPairs implements QuizControlInterface{ 
     
     private ArrayList<Game> games = null;
     private Game selectedGame;
     
-    
+    /**
+     * Constructor for ControlQuiz, initializes all needed variables and loads locally stored games
+     */
     public ControlQuiz(){
         if (games == null) {
             try {
-                games = new ArrayList<Game>();
+                games = new ArrayList<>();
                 ArrayList<String> fileIn = model.FileHandler.readFile(Constants.PATH_GAME_NAMES);
                 for (String s : fileIn) {
                     if (s != null && !s.isEmpty() && !s.equals("")){
-                    games.add(new Game(s));
+                        games.add(new Game(s));
                     }
                 }
             } catch (IOException ex) {
@@ -81,11 +86,11 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
         return selectedGame;
     }
 
-      /**
-       * This method must add a new game to the existing collection of games.
-       * Pre: 
-       * Post: A new game is added to the existing collection of games
-       */
+    /**
+     * This method must add a new game to the existing collection of games.
+     * Pre: 
+     * Post: A new game is added to the existing collection of games
+     */
     public void addGame(String fullLine) {
         Game newGame = new Game(fullLine);
         games.add(newGame);
@@ -94,14 +99,15 @@ public class ControlQuiz extends ControlPairs implements QuizControlInterface{
         FileHandler.saveFile(newPath, newGame.getPairs());
     }
     
-    public void addQuestion(String fullLine)
-    {
+    /**
+     * This method adds a question to a quiz
+     * @param fullLine contains specific package of data from which it constructs a WordPair object
+     */
+    public void addQuestion(String fullLine) {
         WordPair newPair = new WordPair(fullLine);
         selectedGame.addWordPair(newPair);
         String newPath = "Games/" + selectedGame.getGameName() + ".txt";
         FileHandler.appendToFile(newPath, newPair.toString());
     }
-
-    
 
 }

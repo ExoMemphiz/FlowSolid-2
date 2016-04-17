@@ -37,7 +37,7 @@ public class ControlQuizTest {
         assertArrayEquals(expResult, result);
     }
     
-        @Test // sæt den til forkert
+    @Test // sæt den til forkert
     public void testGetGameNames2() {
         System.out.println("getGameNames");
         String[] result = quiz.getGameNames();

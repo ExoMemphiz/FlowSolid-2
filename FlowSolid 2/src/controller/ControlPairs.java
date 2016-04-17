@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import controller.interfaces.WordPairControlInterface;
@@ -17,7 +12,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Constants;
 
-
+/**
+ * This class holds an older version of the WordPairControlInterface, and we use it to extend our new Control class, ControlQuiz.
+ */
 @Deprecated
 public class ControlPairs implements WordPairControlInterface {
 
